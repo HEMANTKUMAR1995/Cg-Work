@@ -118,3 +118,34 @@ bash
 Copy
 Edit
 npm start
+
+
+
+
+
+
+
+
+const handleSubmit = async () => {
+  if (!file) {
+    alert("Please upload a file.");
+    return;
+  }
+
+  try {
+    const response = await axios.post('https://example.com/api/upload', file, {
+      headers: {
+        'Content-Type': file.type || 'application/octet-stream',
+        'x-api-key': 'your-api-key-here',
+      },
+    });
+
+    alert('File uploaded successfully!');
+    setFile(null);
+    setIsOpen(false);
+  } catch (error) {
+    console.error('Upload failed:', error);
+    alert('Upload failed!');
+  }
+};
+
